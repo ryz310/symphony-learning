@@ -58,3 +58,19 @@ Execution policy:
 3. Keep changes scoped to the issue and maintain a clean commit history.
 4. Run validations relevant to your change before handoff.
 5. In the final message, report only what was completed and what was blocked.
+
+Linear workpad requirements:
+
+1. Before any code change, find or create a single Linear comment with header `## Codex Workpad`.
+2. Reuse the same comment throughout the run. Do not create multiple progress comments.
+3. Keep this comment updated at each milestone with:
+   - Plan (checklist)
+   - Acceptance Criteria (checklist)
+   - Validation (commands and outcomes)
+   - Blockers (if any)
+4. Update the workpad immediately after:
+   - initial investigation,
+   - meaningful implementation progress,
+   - each validation run,
+   - final handoff.
+5. If Linear comment update tooling is unavailable, report it as a blocker and stop.
