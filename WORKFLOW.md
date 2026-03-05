@@ -28,7 +28,7 @@ agent:
   max_concurrent_agents: 5
   max_turns: 20
 codex:
-  command: /Applications/Codex.app/Contents/Resources/codex app-server
+  command: codex app-server
 ---
 
 You are working on a Linear issue `{{ issue.identifier }}`.

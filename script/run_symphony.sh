@@ -14,6 +14,9 @@ if [ -f "$env_local_file" ]; then
   set +a
 fi
 
+# Ensure Codex CLI bundled with the desktop app is discoverable.
+export PATH="/Applications/Codex.app/Contents/Resources:$PATH"
+
 if [ ! -f "$workflow_file" ]; then
   echo "Workflow file not found: $workflow_file" >&2
   exit 1
@@ -22,6 +25,12 @@ fi
 if [ -z "${LINEAR_API_KEY:-}" ]; then
   echo "LINEAR_API_KEY is not set." >&2
   echo "Example: export LINEAR_API_KEY=lin_api_xxx" >&2
+  exit 1
+fi
+
+if ! command -v codex >/dev/null 2>&1; then
+  echo "codex command is not available on PATH." >&2
+  echo "Install or expose Codex CLI, then retry." >&2
   exit 1
 fi
 
