@@ -57,7 +57,9 @@ Execution policy:
 2. Work only inside the assigned workspace.
 3. Keep changes scoped to the issue and maintain a clean commit history.
 4. Run validations relevant to your change before handoff.
-5. In the final message, report only what was completed and what was blocked.
+5. Before marking work complete, stage all intended changes, create at least one git commit, and push to the repository remote (`git push origin HEAD` or equivalent).
+6. If commit or push fails, treat it as a blocker and do not report the issue as completed.
+7. In the final message, report only what was completed and what was blocked, and include commit hash and pushed branch/ref when push succeeded.
 
 Linear workpad requirements:
 
