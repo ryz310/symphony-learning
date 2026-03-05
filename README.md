@@ -43,7 +43,7 @@ cp .env.example .env.local
 
 `script/run_symphony.sh` は内部で以下を実行します。
 
-- `openai/symphony` を `/tmp/openai-symphony` に配置/更新
+- `openai/symphony` を `~/code/symphony-runtime/openai-symphony` に配置/更新
 - `mise` で Erlang/Elixir を導入
 - `mix deps.get` と `mix build`
 - このリポジトリの `WORKFLOW.md` を読み込んで Symphony を起動

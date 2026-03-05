@@ -3,7 +3,7 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 repo_root="$(cd "$script_dir/.." && pwd)"
-symphony_dir="${SYMPHONY_DIR:-/tmp/openai-symphony}"
+symphony_dir="${SYMPHONY_DIR:-$HOME/code/symphony-runtime/openai-symphony}"
 workflow_file="${1:-$repo_root/WORKFLOW.md}"
 env_local_file="$repo_root/.env.local"
 

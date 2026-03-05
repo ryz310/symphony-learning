@@ -3,7 +3,7 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 repo_root="$(cd "$script_dir/.." && pwd)"
-symphony_dir="${SYMPHONY_DIR:-/tmp/openai-symphony}"
+symphony_dir="${SYMPHONY_DIR:-$HOME/code/symphony-runtime/openai-symphony}"
 
 if ! command -v git >/dev/null 2>&1; then
   echo "git is required." >&2
@@ -16,6 +16,7 @@ if ! command -v mise >/dev/null 2>&1; then
 fi
 
 if [ ! -d "$symphony_dir/.git" ]; then
+  mkdir -p "$(dirname "$symphony_dir")"
   git clone --depth 1 https://github.com/openai/symphony "$symphony_dir"
 else
   git -C "$symphony_dir" fetch origin
