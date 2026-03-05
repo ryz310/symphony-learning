@@ -22,13 +22,13 @@ workspace:
 hooks:
   after_create: |
     git clone --depth 1 https://github.com/ryz310/symphony-learning .
-    bundle install
-    bin/rails db:prepare
+    "$HOME/.rbenv/shims/bundle" install
+    "$HOME/.rbenv/shims/bundle" exec rails db:prepare
 agent:
   max_concurrent_agents: 5
   max_turns: 20
 codex:
-  command: codex app-server
+  command: /Applications/Codex.app/Contents/Resources/codex app-server
 ---
 
 You are working on a Linear issue `{{ issue.identifier }}`.
