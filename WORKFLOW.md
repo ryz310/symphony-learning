@@ -29,6 +29,10 @@ agent:
   max_turns: 20
 codex:
   command: codex app-server
+  turn_sandbox_policy:
+    type: workspaceWrite
+    writable_roots:
+      - /var/run/docker.sock
 ---
 
 You are working on a Linear issue `{{ issue.identifier }}`.
