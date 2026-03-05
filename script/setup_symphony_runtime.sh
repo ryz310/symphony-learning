@@ -19,9 +19,12 @@ if [ ! -d "$symphony_dir/.git" ]; then
   mkdir -p "$(dirname "$symphony_dir")"
   git clone --depth 1 https://github.com/openai/symphony "$symphony_dir"
 else
-  git -C "$symphony_dir" fetch origin
-  git -C "$symphony_dir" checkout main
-  git -C "$symphony_dir" pull --ff-only origin main
+  # Keep runtime repo deterministic by always syncing to upstream main.
+  git -C "$symphony_dir" remote set-url origin https://github.com/openai/symphony
+  git -C "$symphony_dir" fetch origin main
+  git -C "$symphony_dir" checkout -B main origin/main
+  git -C "$symphony_dir" reset --hard origin/main
+  git -C "$symphony_dir" clean -fd
 fi
 
 cd "$symphony_dir/elixir"
