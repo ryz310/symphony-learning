@@ -5,6 +5,14 @@ script_dir="$(cd "$(dirname "$0")" && pwd)"
 repo_root="$(cd "$script_dir/.." && pwd)"
 symphony_dir="${SYMPHONY_DIR:-/tmp/openai-symphony}"
 workflow_file="${1:-$repo_root/WORKFLOW.md}"
+env_local_file="$repo_root/.env.local"
+
+if [ -f "$env_local_file" ]; then
+  set -a
+  # shellcheck disable=SC1090
+  source "$env_local_file"
+  set +a
+fi
 
 if [ ! -f "$workflow_file" ]; then
   echo "Workflow file not found: $workflow_file" >&2

@@ -28,6 +28,7 @@ bin/rails test
 `WORKFLOW.md` と `.codex/skills` を同梱しています。
 
 1. `LINEAR_API_KEY` を環境変数に設定する
+   - 例: `.env.example` を `.env.local` にコピーして値を設定
 2. `WORKFLOW.md` の `tracker.project_slug` を自分の Linear Project slug に変更する
 3. リポジトリ名を変更した場合は、`hooks.after_create` の `git clone` URL も更新する
 4. Symphony (Elixir 実装) を起動する
@@ -35,7 +36,8 @@ bin/rails test
 例:
 
 ```bash
-export LINEAR_API_KEY=lin_api_xxx
+cp .env.example .env.local
+# .env.local の LINEAR_API_KEY を実値に変更
 ./script/run_symphony.sh
 ```
 
@@ -45,6 +47,7 @@ export LINEAR_API_KEY=lin_api_xxx
 - `mise` で Erlang/Elixir を導入
 - `mix deps.get` と `mix build`
 - このリポジトリの `WORKFLOW.md` を読み込んで Symphony を起動
+- `.env.local` があれば自動で読み込み
 
 停止は `Ctrl+C` です。
 
