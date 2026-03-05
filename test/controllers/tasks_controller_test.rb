@@ -38,4 +38,23 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_url
   end
+
+  test "should render markdown description on show" do
+    task = Task.create!(title: "Markdown task", description: "**Bold**\n\n- Item")
+
+    get task_url(task)
+
+    assert_response :success
+    assert_includes @response.body, "<strong>Bold</strong>"
+    assert_match %r{<ul>.*<li>.*Item.*</li>.*</ul>}m, @response.body
+  end
+
+  test "should sanitize unsafe markdown links on show" do
+    task = Task.create!(title: "Unsafe link task", description: "[xss](javascript:alert('xss'))")
+
+    get task_url(task)
+
+    assert_response :success
+    refute_match %r{href="javascript:}i, @response.body
+  end
 end

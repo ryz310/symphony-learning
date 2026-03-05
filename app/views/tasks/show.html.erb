@@ -8,9 +8,13 @@
 
     <article class="rounded-lg bg-white p-6 shadow">
       <h1 class="text-2xl font-bold text-slate-900"><%= @task.title %></h1>
-      <div class="mt-4 whitespace-pre-wrap text-slate-700">
-        <%= @task.description.presence || "No description provided." %>
-      </div>
+      <% if @task.description.present? %>
+        <div class="mt-4 space-y-3 text-slate-700 [&_a]:text-blue-700 [&_a]:underline [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6">
+          <%= render_markdown(@task.description) %>
+        </div>
+      <% else %>
+        <p class="mt-4 text-slate-700">No description provided.</p>
+      <% end %>
 
       <div class="mt-6 flex items-center gap-3">
         <%= link_to "Back to tasks", tasks_path, class: "rounded-md border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
