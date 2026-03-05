@@ -2,7 +2,7 @@
 tracker:
   kind: linear
   api_key: $LINEAR_API_KEY
-  project_slug: "replace-with-your-linear-project-slug"
+  project_slug: "symphony-learning-948c6fe756ec"
   active_states:
     - Todo
     - In Progress
