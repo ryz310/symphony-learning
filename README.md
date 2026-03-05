@@ -30,19 +30,23 @@ bin/rails test
 1. `LINEAR_API_KEY` を環境変数に設定する
 2. `WORKFLOW.md` の `tracker.project_slug` を自分の Linear Project slug に変更する
 3. リポジトリ名を変更した場合は、`hooks.after_create` の `git clone` URL も更新する
-4. Symphony (Elixir 実装) を起動してこの `WORKFLOW.md` を指定する
+4. Symphony (Elixir 実装) を起動する
 
 例:
 
 ```bash
-git clone https://github.com/openai/symphony /tmp/symphony
-cd /tmp/symphony/elixir
-mise trust
-mise install
-mise exec -- mix setup
-mise exec -- mix build
-mise exec -- ./bin/symphony /Users/ryosuke_sato/Documents/ryz310/symphony-learning/WORKFLOW.md
+export LINEAR_API_KEY=lin_api_xxx
+./script/run_symphony.sh
 ```
+
+`script/run_symphony.sh` は内部で以下を実行します。
+
+- `openai/symphony` を `/tmp/openai-symphony` に配置/更新
+- `mise` で Erlang/Elixir を導入
+- `mix deps.get` と `mix build`
+- このリポジトリの `WORKFLOW.md` を読み込んで Symphony を起動
+
+停止は `Ctrl+C` です。
 
 参考:
 - [openai/symphony](https://github.com/openai/symphony)
