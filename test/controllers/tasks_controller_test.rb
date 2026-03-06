@@ -57,4 +57,23 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     refute_match %r{href="javascript:}i, @response.body
   end
+
+  test "should render markdown headings on show" do
+    task = Task.create!(title: "Heading task", description: "# Heading")
+
+    get task_url(task)
+
+    assert_response :success
+    assert_match %r{<h1>.*Heading.*</h1>}m, @response.body
+  end
+
+  test "should sanitize raw html in markdown on show" do
+    task = Task.create!(title: "Unsafe html task", description: "<script>alert('xss')</script>\n\nSafe text")
+
+    get task_url(task)
+
+    assert_response :success
+    refute_includes @response.body, "<script>"
+    assert_includes @response.body, "Safe text"
+  end
 end
